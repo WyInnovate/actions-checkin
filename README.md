@@ -53,3 +53,7 @@
    > 这两个值可以从浏览器开发者工具的 `/auth/session` 请求头（`Request Header`）中获取。
 
 ---
+### **github主页贪吃蛇动画**
+1. Settings > Actions > General > Workflow permissions > 选择Read and write permissions 保存
+2. Actions > 手动运行一次generate-snake
+3. 使用 如`![](https://github.com/Shadownc/actions-checkin/blob/output/github-snake.svg)`
