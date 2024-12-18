@@ -5,6 +5,7 @@ import json
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
+from dotenv import load_dotenv
 from utils.qywechat_notify import send_wechat_notification  # 假设你有此函数实现企业微信通知
 from utils.qmsg_notify import send_qmsg_notification
 from utils.serve_chan_notify import send_server_chan_notification
@@ -20,7 +21,7 @@ def load_env_variables():
     csrfToken = os.getenv("FOLLOW_CSRF_TOKEN")
     cookie = os.getenv("FOLLOW_COOKIE")
 
-    if not csrfToken or not cookie:
+    if not cookie:
         raise ValueError("缺少必须的环境变量：CSRF Token 或 Cookie")
 
     return csrfToken, cookie
@@ -38,12 +39,8 @@ def sign_in():
         'Cookie': cookie
     }
 
-    payload = {
-        "csrfToken": csrfToken
-    }
-
     # 发送 POST 请求
-    response = requests.post(url, headers=headers, data=json.dumps(payload))
+    response = requests.post(url, headers=headers)
 
     # 解析返回结果
     result = response.json()
